@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nether Portal Intro</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #000;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .portal-frame {
+      width: 320px;
+      height: 480px;
+      border: 16px solid #4b006e;
+      box-shadow: 0 0 40px #8a00ff, 0 0 80px #9400ff inset;
+      position: relative;
+      animation: framePulse 3s infinite ease-in-out;
+    }
+
+    @keyframes framePulse {
+      0%, 100% { box-shadow: 0 0 40px #8a00ff, 0 0 80px #9400ff inset; }
+      50% { box-shadow: 0 0 70px #c200ff, 0 0 140px #d600ff inset; }
+    }
+
+    .portal-inner {
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #5a00b0, #240042, #0b0014);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .swirl {
+      position: absolute;
+      width: 300%;
+      height: 300%;
+      top: -100%;
+      left: -100%;
+      background: conic-gradient(
+        #ff00ff,
+        #8a00ff,
+        #5a00b0,
+        #8a00ff,
+        #ff00ff
+      );
+      animation: spin 6s linear infinite;
+      opacity: 0.35;
+      filter: blur(40px);
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .intro-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #e0b3ff;
+      font-size: 1.8rem;
+      text-shadow: 0 0 12px #ff00ea, 0 0 24px #ff00ea;
+      opacity: 0;
+      animation: fadeIn 4s ease-out forwards 1s;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    #teleport-menu { display:none; position:absolute; bottom:20px; left:50%; transform:translateX(-50%); text-align:center; }
+    #teleport-menu button { margin:8px; padding:10px 22px; font-size:1.1rem; background:#4b006e; color:white; border:none; border-radius:10px; cursor:pointer; }
+    #videos-section { display:none; position:absolute; top:0; left:0; width:100%; height:100%; background:#000; color:white; text-align:center; padding-top:60px; overflow:auto; }
+    #videos-section h2 { margin-bottom:20px; text-shadow:0 0 12px #ff00ea; }
+    #videos-section a { display:block; margin:12px 0; color:#b46bff; text-decoration:none; font-size:1.2rem; }
+    #back-button { margin-top:30px; padding:10px 20px; background:#8a00ff; border:none; border-radius:10px; color:white; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <div class="portal-frame">
+    <div class="portal-inner">
+      <div class="swirl"></div>
+      <div class="intro-text">Welcome to the Fantasy Universe<br/>Where Adventures Begin...</div>
+    </div>
+  </div>
+
+  <div style="position:absolute; bottom:120px; left:50%; transform:translateX(-50%); text-align:center;">
+    <button onclick="document.getElementById('teleport-menu').style.display='block'" 
+      style="padding:12px 28px; font-size:1.3rem; background:#8a00ff; border:none; border-radius:12px; color:white; cursor:pointer; box-shadow:0 0 14px #c200ff;">
+      Teleport
+    </button>
+  </div>
+
+  <div id="teleport-menu">
+    <button onclick="alert('Info Page Coming Soon!')">Info</button>
+    <button onclick="showVideos()">Videos</button>
+    <button onclick="alert('Fun Page Coming Soon!')">Fun</button>
+  </div>
+
+  <div id="videos-section">
+    <h2>Videos You Can Watch</h2>
+    <a href="https://youtu.be/30IVALY7Wng?si=GFEdTTareDN3vTlE" target="_blank">I Joined The FantistSMP...</a>
+    <a href="https://youtu.be/kvh_v2Q8gVk?si=YFicSuLIaKQFJ0Lm" target="_blank">Hunting down the Mysterious player…</a>
+    <button id="back-button" onclick="hideVideos()">Back</button>
+  </div>
+
+  <script>
+    function showVideos(){
+      document.getElementById('videos-section').style.display='block';
+      document.getElementById('teleport-menu').style.display='none';
+    }
+    function hideVideos(){
+      document.getElementById('videos-section').style.display='none';
+      document.getElementById('teleport-menu').style.display='block';
+    }
+  </script>
+</body>
+</html>
